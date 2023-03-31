@@ -1,14 +1,14 @@
 export type WarmupType = {
   name: string;
-  reps?: string | number;
+  reps?: string;
   link: string;
 };
 
 export type ExerciseType = {
   name: string;
-  weight?: number;
-  sets: number;
-  reps: string | number;
+  weight?: string;
+  sets: string;
+  reps: string;
   link: string;
 };
 
