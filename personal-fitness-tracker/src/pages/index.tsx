@@ -363,11 +363,8 @@ const Home: NextPage = () => {
                 </h2>
                 {day.workouts.map((workoutGroup: WorkoutGroupType) => {
                   return (
-                    <div className="mb-2">
-                      <h3
-                        key={workoutGroup.name}
-                        className="mb-2 text-xl font-medium text-white"
-                      >
+                    <div key={workoutGroup.name} className="mb-2">
+                      <h3 className="mb-2 text-xl font-medium text-white">
                         {workoutGroup.name}
                       </h3>
                       <ul>
