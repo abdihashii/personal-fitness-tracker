@@ -20,25 +20,21 @@ const Home: NextPage = () => {
         },
         {
           name: "Climber + Rotation",
-          sets: 1,
           reps: "5 each side",
           link: "https://youtu.be/rNfo8M0dMTo",
         },
         {
           name: "Handcuffs",
-          sets: 1,
           reps: 10,
           link: "https://youtu.be/JUsnVN_CAXs",
         },
         {
           name: "Windshield Wiper",
-          sets: 1,
           reps: "10 each side",
           link: "https://youtu.be/h6AUC5JrZ3g",
         },
         {
           name: "Alternate 90/90",
-          sets: 1,
           reps: "5 each side",
           link: "https://youtu.be/I1JzHCaa1Ak",
         },
