@@ -13,11 +13,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             Workouts
           </Link>
           <Link href="/new-workout" className="text-lg font-semibold">
-            New Workout
+            Add New Workout
           </Link>
         </nav>
       </header>
-      <main className="flex min-h-screen flex-col gap-10 bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex min-h-screen flex-col gap-10 bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         {children}
       </main>
     </div>

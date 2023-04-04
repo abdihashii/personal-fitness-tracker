@@ -1,10 +1,12 @@
 import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import type {
   WorkoutDayType,
   WarmupType,
   WorkoutGroupType,
-  ExerciseType,
+  WorkoutType,
   WorkoutDaysType,
+  CoolDownType,
 } from "~/types/workoutTypes";
 
 /*
@@ -13,6 +15,7 @@ import type {
       name: string,
       warmups: [],
       workouts: [],
+      cooldowns: [],
     }
   ]
 */
@@ -21,6 +24,7 @@ export const newWorkoutDayAtom = atom<WorkoutDayType>({
   name: "",
   warmups: [],
   workouts: [],
+  cooldowns: [],
 });
 
 /*
@@ -43,18 +47,18 @@ export const newWarmupAtom = atom<WarmupType>({
   workouts: [
     workoutGroup: {
       name: string,
-      exercises: [],
+      workouts: [],
     }
   ]
 */
 export const workoutGroupsAtom = atom<WorkoutGroupType[]>([]);
 export const newWorkoutGroupAtom = atom<WorkoutGroupType>({
   name: "",
-  exercises: [],
+  workouts: [],
 });
 
 /*
-  exercises: [
+  workouts: [
     {
       name: string,
       weight: string,
@@ -64,11 +68,28 @@ export const newWorkoutGroupAtom = atom<WorkoutGroupType>({
     },
   ]
 */
-export const workoutsAtom = atom<ExerciseType[]>([]);
-export const newWorkoutAtom = atom<ExerciseType>({
+export const workoutsAtom = atomWithStorage<WorkoutType[]>("workouts", []);
+export const newWorkoutAtom = atom<WorkoutType>({
   name: "",
   weight: "",
   sets: "",
+  reps: "",
+  link: "",
+});
+
+/*
+  cooldowns: [
+    {
+      name: string,
+      reps: string | number,
+      link: string,
+    },
+  ]
+*/
+
+export const cooldownsAtom = atom<CoolDownType[]>([]);
+export const newCooldownAtom = atom<CoolDownType>({
+  name: "",
   reps: "",
   link: "",
 });
@@ -87,7 +108,7 @@ export const newWorkoutAtom = atom<ExerciseType>({
         workouts: [
           workoutGroup: {
             name: string,
-            exercises: [
+            workouts: [
               {
                 name: string,
                 sets: number,
@@ -96,6 +117,13 @@ export const newWorkoutAtom = atom<ExerciseType>({
               },
             ],
           }
-        ]
+        ],
+        cooldowns: [
+          {
+            name: string,
+            reps: string | number,
+            link: string,
+          },
+        ],
       }
    */
