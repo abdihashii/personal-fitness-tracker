@@ -34,7 +34,7 @@ export const NewWorkoutGroupForm = ({
           onChange={(e) =>
             setNewWorkoutGroup({ ...newWorkoutGroup, name: e.target.value })
           }
-          className="mb-8 block rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="mb-8 block w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
 
         <NewWorkoutForm />
