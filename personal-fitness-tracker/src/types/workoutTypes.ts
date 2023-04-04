@@ -4,7 +4,7 @@ export type WarmupType = {
   link: string;
 };
 
-export type ExerciseType = {
+export type WorkoutType = {
   name: string;
   weight?: string;
   sets: string;
@@ -12,15 +12,22 @@ export type ExerciseType = {
   link: string;
 };
 
+export type CoolDownType = {
+  name: string;
+  reps?: string;
+  link: string;
+};
+
 export type WorkoutGroupType = {
   name: string;
-  exercises: ExerciseType[];
+  workouts: WorkoutType[];
 };
 
 export type WorkoutDayType = {
   name: string;
   warmups: WarmupType[];
   workouts: WorkoutGroupType[];
+  cooldowns: CoolDownType[];
 };
 
 export type WorkoutDaysType = WorkoutDayType[];
