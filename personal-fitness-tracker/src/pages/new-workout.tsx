@@ -2,6 +2,7 @@ import { atom, useAtom } from "jotai";
 import { NewWorkoutDayForm } from "~/components/newWorkoutDayForm";
 import { NewWarmupForm } from "~/components/newWarmupForm";
 import { NewWorkoutGroupForm } from "~/components/newWorkoutGroupForm";
+import { Success } from "~/components/success";
 
 const stepAtom = atom(1);
 
@@ -17,6 +18,8 @@ const NewWorkout = () => {
       return <NewWarmupForm {...{ nextStep, prevStep }} />;
     case 3:
       return <NewWorkoutGroupForm {...{ nextStep, prevStep }} />;
+    case 4:
+      return <Success {...{ nextStep, prevStep }} />;
     default:
       console.log("default");
   }
