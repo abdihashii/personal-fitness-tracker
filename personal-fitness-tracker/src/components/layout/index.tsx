@@ -9,11 +9,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Link href="/" className="text-lg font-semibold">
             Home
           </Link>
-          <Link href="/workouts" className="text-lg font-semibold">
-            Workouts
+          <Link href="/list" className="text-lg font-semibold">
+            List
           </Link>
-          <Link href="/new-workout" className="text-lg font-semibold">
-            Add New Workout
+          <Link href="/add" className="text-lg font-semibold">
+            Add
           </Link>
         </nav>
       </header>

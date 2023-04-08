@@ -1,4 +1,5 @@
 import { useAtom } from "jotai";
+import Link from "next/link";
 import Layout from "~/components/layout";
 import { workoutsAtom } from "~/store/workoutStore";
 
@@ -8,6 +9,12 @@ const Workouts = () => {
   return (
     <Layout>
       <div className="mx-auto mt-5 flex w-11/12 flex-col gap-4">
+        <Link
+          href="/add/new-workout"
+          className="w-full justify-between gap-1 rounded-md border border-gray-300 bg-green-800 px-2 py-4 text-center active:bg-green-600"
+        >
+          Add New Workout
+        </Link>
         {workouts.map((workout) => {
           return (
             <div
