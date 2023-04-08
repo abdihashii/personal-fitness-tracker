@@ -4,11 +4,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <header className="bg-slate-600 px-4 py-4 text-white">
-        <h1 className="text-2xl font-semibold">Personal Fitness Tracker</h1>
+        <Link href="/" className="text-2xl font-semibold">
+          Personal Fitness Tracker
+        </Link>
         <nav className="mt-4 flex flex-row gap-4">
-          <Link href="/" className="text-lg font-semibold">
-            Home
-          </Link>
           <Link href="/list" className="text-lg font-semibold">
             List
           </Link>
