@@ -19,7 +19,10 @@ import type {
     }
   ]
 */
-export const workoutDaysAtom = atom<WorkoutDaysType>([]);
+export const workoutDaysAtom = atomWithStorage<WorkoutDaysType>(
+  "workoutDays",
+  []
+);
 export const newWorkoutDayAtom = atom<WorkoutDayType>({
   name: "",
   warmups: [],
@@ -36,7 +39,7 @@ export const newWorkoutDayAtom = atom<WorkoutDayType>({
     },
   ]
 */
-export const warmupsAtom = atom<WarmupType[]>([]);
+export const warmupsAtom = atomWithStorage<WarmupType[]>("warmups", []);
 export const newWarmupAtom = atom<WarmupType>({
   name: "",
   reps: "",
@@ -51,7 +54,10 @@ export const newWarmupAtom = atom<WarmupType>({
     }
   ]
 */
-export const workoutGroupsAtom = atom<WorkoutGroupType[]>([]);
+export const workoutGroupsAtom = atomWithStorage<WorkoutGroupType[]>(
+  "workoutGroups",
+  []
+);
 export const newWorkoutGroupAtom = atom<WorkoutGroupType>({
   name: "",
   workouts: [],
@@ -87,7 +93,7 @@ export const newWorkoutAtom = atom<WorkoutType>({
   ]
 */
 
-export const cooldownsAtom = atom<CoolDownType[]>([]);
+export const cooldownsAtom = atomWithStorage<CoolDownType[]>("cooldowns", []);
 export const newCooldownAtom = atom<CoolDownType>({
   name: "",
   reps: "",
