@@ -1,6 +1,23 @@
-import { Workout } from '../types/workoutTypes';
+import { Warmup, Workout } from '../types/workoutTypes';
+import { motion } from 'framer-motion';
+import { useAtom, atom } from 'jotai';
+import { WarmupModal } from './warmupModal';
+
+const selectedWarmupAtom = atom<Warmup | null>(null);
 
 const WorkoutDay = ({ workout }: { workout: Workout }) => {
+  const [selectedWarmup, setSelectedWarmup] = useAtom(selectedWarmupAtom);
+
+  // Opens the warmup in a modal
+  const handleOpenWarmup = (warmup: Warmup) => {
+    setSelectedWarmup(warmup);
+  };
+
+  // Close the modal
+  const handleCloseModal = () => {
+    setSelectedWarmup(null);
+  };
+
   return (
     <div
       className="mb-10 flex w-11/12 flex-col rounded border border-gray-300 p-5"
@@ -14,19 +31,27 @@ const WorkoutDay = ({ workout }: { workout: Workout }) => {
 
       {/* warmup, excercises, and cooldowns wrapper */}
       <div className="flex w-full flex-row justify-around gap-5">
+        {/* warmup */}
         <div className="mt-10">
           <h3 className="mb-5 text-center text-lg font-bold">Warmups</h3>
           {workout.warmups.map((warmup) => (
             <div key={warmup.id}>
-              <a
-                href={warmup.video}
-                target="_blank"
+              <button
+                // href={warmup.video}
+                // target="_blank"
                 className="mb-3 block text-blue-500 hover:text-blue-700"
+                onClick={() => handleOpenWarmup(warmup)}
               >
                 {warmup.name}
-              </a>
+              </button>
             </div>
           ))}
+          {selectedWarmup && (
+            <WarmupModal
+              warmup={selectedWarmup}
+              closeModal={handleCloseModal}
+            />
+          )}
         </div>
 
         <div className="mt-10">
