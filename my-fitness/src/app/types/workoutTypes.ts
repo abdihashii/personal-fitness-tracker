@@ -6,7 +6,7 @@ export type Warmup = {
   video?: string;
 };
 
-export type ExerciseName = {
+type ExerciseName = {
   name: string;
   video?: string;
 };

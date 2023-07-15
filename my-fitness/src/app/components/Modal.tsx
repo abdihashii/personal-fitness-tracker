@@ -47,7 +47,7 @@ export const Modal = ({ content, closeModal }: ModalProps) => {
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
           transition={{ duration: 0.3 }}
-          className="rounded-lg bg-white p-4" // Tailwind CSS classes for modal
+          className="rounded-lg bg-white p-4"
         >
           <h2 className="mb-2 text-xl font-bold text-gray-700">
             {content?.name}
