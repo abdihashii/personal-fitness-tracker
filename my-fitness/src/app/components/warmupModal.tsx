@@ -17,7 +17,7 @@ export const WarmupModal = ({ warmup, closeModal }: WarmupModalProps) => {
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom);
 
   const closeModalIfClickedOutside = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       closeModal();
@@ -48,30 +48,31 @@ export const WarmupModal = ({ warmup, closeModal }: WarmupModalProps) => {
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-white p-4 rounded-lg" // Tailwind CSS classes for modal
+          className="rounded-lg bg-white p-4" // Tailwind CSS classes for modal
         >
-          <h2 className="text-gray-700 font-bold text-xl mb-2">
+          <h2 className="mb-2 text-xl font-bold text-gray-700">
             {warmup?.name}
           </h2>
-          <div className="embed-responsive aspect-ratio-16/9 mb-4">
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : (
-              <iframe
-                onLoad={handleVideoLoad}
-                title="Warmup Video"
-                className="embed-responsive-item"
-                src={getEmbeddedYouTubeLink(warmup?.video || '')}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+          <div className="embed-responsive aspect-ratio-16/9 relative mb-4">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <LoadingSpinner />
+              </div>
             )}
+            <iframe
+              onLoad={handleVideoLoad}
+              title="Warmup Video"
+              className="embed-responsive-item"
+              src={getEmbeddedYouTubeLink(warmup?.video || '')}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
-          <p className="text-gray-700 text-lg mb-2">Sets: {warmup?.sets}</p>
-          <p className="text-gray-700 text-lg mb-4">Reps: {warmup?.reps}</p>
+          <p className="mb-2 text-lg text-gray-700">Sets: {warmup?.sets}</p>
+          <p className="mb-4 text-lg text-gray-700">Reps: {warmup?.reps}</p>
           <button
             onClick={closeModal}
-            className="px-6 py-3 mt-4 bg-gray-500 text-white rounded transition duration-200 hover:bg-gray-400"
+            className="mt-4 w-full rounded bg-gray-500 px-6 py-3 text-white transition duration-200 hover:bg-gray-400"
           >
             Close
           </button>
