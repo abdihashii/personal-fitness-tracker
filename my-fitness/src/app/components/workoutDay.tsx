@@ -1,30 +1,37 @@
-import { Warmup, Workout } from '../types/workoutTypes';
-import { motion } from 'framer-motion';
+import { Warmup, Workout, Cooldown, Exercise } from '../types/workoutTypes';
 import { useAtom, atom } from 'jotai';
-import { WarmupModal } from './warmupModal';
+import { Modal } from './Modal';
+import { ExerciseModal } from './excerciseModal';
 
 const selectedWarmupAtom = atom<Warmup | null>(null);
+const selectedExerciseAtom = atom<Exercise | null>(null);
+const selectedCooldownAtom = atom<Cooldown | null>(null);
 
 const WorkoutDay = ({ workout }: { workout: Workout }) => {
   const [selectedWarmup, setSelectedWarmup] = useAtom(selectedWarmupAtom);
+  const [selectedExercise, setSelectedExercise] = useAtom(selectedExerciseAtom);
+  const [selectedCooldown, setSelectedCooldown] = useAtom(selectedCooldownAtom);
 
-  // Opens the warmup in a modal
   const handleOpenWarmup = (warmup: Warmup) => {
     setSelectedWarmup(warmup);
   };
 
-  // Close the modal
+  const handleOpenExercise = (exercise: Exercise) => {
+    setSelectedExercise(exercise);
+  };
+
+  const handleOpenCooldown = (cooldown: Cooldown) => {
+    setSelectedCooldown(cooldown);
+  };
+
   const handleCloseModal = () => {
     setSelectedWarmup(null);
+    setSelectedExercise(null);
+    setSelectedCooldown(null);
   };
 
   return (
-    <div
-      className="mb-10 flex w-11/12 flex-col rounded border border-gray-300 p-5"
-      onClick={() => {
-        console.log(`clicked: ${workout.day}`);
-      }}
-    >
+    <div className="mb-10 flex w-11/12 flex-col rounded border border-gray-300 p-5">
       <h2 className="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-center text-4xl font-bold text-transparent">
         {workout.day}
       </h2>
@@ -37,9 +44,7 @@ const WorkoutDay = ({ workout }: { workout: Workout }) => {
           {workout.warmups.map((warmup) => (
             <div key={warmup.id}>
               <button
-                // href={warmup.video}
-                // target="_blank"
-                className="mb-3 block text-blue-500 hover:text-blue-700"
+                className="mb-3 block text-left text-blue-500 hover:text-blue-700"
                 onClick={() => handleOpenWarmup(warmup)}
               >
                 {warmup.name}
@@ -47,45 +52,45 @@ const WorkoutDay = ({ workout }: { workout: Workout }) => {
             </div>
           ))}
           {selectedWarmup && (
-            <WarmupModal
-              warmup={selectedWarmup}
+            <Modal content={selectedWarmup} closeModal={handleCloseModal} />
+          )}
+        </div>
+
+        {/* exercises */}
+        <div className="mt-10">
+          <h3 className="mb-5 text-left text-lg font-bold">Exercises</h3>
+          {workout.exercises.map((exercise) => (
+            <button
+              key={exercise.id}
+              className="mb-3 text-left text-blue-500 hover:text-blue-700"
+              onClick={() => handleOpenExercise(exercise)}
+            >
+              {exercise.names.map((nameObject) => nameObject.name).join(', ')}
+            </button>
+          ))}
+          {selectedExercise && (
+            <ExerciseModal
+              exercise={selectedExercise}
               closeModal={handleCloseModal}
             />
           )}
         </div>
 
+        {/* cooldowns */}
         <div className="mt-10">
-          <h3 className="mb-5 text-center text-lg font-bold">Exercises</h3>
-          {workout.exercises.map((exercise, i) => (
-            <div key={exercise.id}>
-              {exercise.names.map((e) => (
-                <a
-                  key={e.name}
-                  href={e.video}
-                  target="_blank"
-                  className="mb-3 block text-blue-500 hover:text-blue-700"
-                >
-                  {e.name}
-                </a>
-              ))}
-              {i < workout.exercises.length - 1 && <hr />}
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10">
-          <h3 className="mb-5 text-center text-lg font-bold">Cooldowns</h3>
+          <h3 className="mb-5 text-left text-lg font-bold">Cooldowns</h3>
           {workout.cooldowns.map((cooldown) => (
-            <div key={cooldown.id}>
-              <a
-                href={cooldown.video}
-                target="_blank"
-                className="mb-3 text-blue-500 hover:text-blue-700"
-              >
-                {cooldown.name}
-              </a>
-            </div>
+            <button
+              key={cooldown.id}
+              className="mb-3 text-left text-blue-500 hover:text-blue-700"
+              onClick={() => handleOpenCooldown(cooldown)}
+            >
+              {cooldown.name}
+            </button>
           ))}
+          {selectedCooldown && (
+            <Modal content={selectedCooldown} closeModal={handleCloseModal} />
+          )}
         </div>
       </div>
     </div>
