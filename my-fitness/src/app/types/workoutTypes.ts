@@ -6,12 +6,14 @@ export type Warmup = {
   video?: string;
 };
 
+export type ExerciseName = {
+  name: string;
+  video?: string;
+};
+
 export type Exercise = {
   id: number | null;
-  names: {
-    name: string;
-    video?: string;
-  }[];
+  names: ExerciseName[];
   sets: number;
   reps: number | string;
   videos?: string[];
