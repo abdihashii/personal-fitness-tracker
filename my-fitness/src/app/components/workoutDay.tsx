@@ -31,20 +31,20 @@ const WorkoutDay = ({ workout }: { workout: Workout }) => {
   };
 
   return (
-    <div className="mb-10 flex w-11/12 flex-col rounded border border-gray-300 p-5">
-      <h2 className="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-center text-4xl font-bold text-transparent">
+    <div className="mb-10 flex flex-col w-full sm:w-11/12 rounded border border-gray-300 p-5">
+      <h2 className="mb-5 bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-center text-3xl lg:text-4xl font-bold text-transparent">
         {workout.day}
       </h2>
 
-      {/* warmup, excercises, and cooldowns wrapper */}
-      <div className="flex w-full flex-row justify-around gap-5">
+      {/* warmup, exercises, and cooldowns wrapper */}
+      <div className="flex flex-col md:flex-row justify-around gap-5">
         {/* warmup */}
-        <div className="mt-10">
-          <h3 className="mb-5 text-center text-lg font-bold">Warmups</h3>
+        <div className="mt-5">
+          <h3 className="mb-5 text-center text-2xl font-bold">Warmups</h3>
           {workout.warmups.map((warmup) => (
             <div key={warmup.id}>
               <button
-                className="mb-3 block text-left text-blue-500 hover:text-blue-700"
+                className="w-full mb-3 text-center text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded py-4 text-lg font-bold"
                 onClick={() => handleOpenWarmup(warmup)}
               >
                 {warmup.name}
@@ -57,12 +57,12 @@ const WorkoutDay = ({ workout }: { workout: Workout }) => {
         </div>
 
         {/* exercises */}
-        <div className="mt-10">
-          <h3 className="mb-5 text-left text-lg font-bold">Exercises</h3>
+        <div className="mt-5">
+          <h3 className="mb-5 text-center text-2xl font-bold">Exercises</h3>
           {workout.exercises.map((exercise) => (
             <button
               key={exercise.id}
-              className="mb-3 text-left text-blue-500 hover:text-blue-700"
+              className="w-full mb-3 text-center text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded py-4 text-lg font-bold"
               onClick={() => handleOpenExercise(exercise)}
             >
               {exercise.names.map((nameObject) => nameObject.name).join(', ')}
@@ -77,12 +77,12 @@ const WorkoutDay = ({ workout }: { workout: Workout }) => {
         </div>
 
         {/* cooldowns */}
-        <div className="mt-10">
-          <h3 className="mb-5 text-left text-lg font-bold">Cooldowns</h3>
+        <div className="mt-5">
+          <h3 className="mb-5 text-center text-2xl font-bold">Cooldowns</h3>
           {workout.cooldowns.map((cooldown) => (
             <button
               key={cooldown.id}
-              className="mb-3 text-left text-blue-500 hover:text-blue-700"
+              className="w-full mb-3 text-center text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white rounded py-4 text-lg font-bold"
               onClick={() => handleOpenCooldown(cooldown)}
             >
               {cooldown.name}

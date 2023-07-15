@@ -5,11 +5,11 @@ import { useAtom } from 'jotai';
 import { workoutsAtom } from './store/workoutAtoms';
 
 export default function Home() {
-  const [workouts, setWorkouts] = useAtom(workoutsAtom);
+  const [workouts] = useAtom(workoutsAtom);
 
   return (
-    <main className="flex w-full flex-col items-center justify-center">
-      <h1 className="my-10 bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-center text-4xl font-bold text-transparent">
+    <main className="flex w-full flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-10">
+      <h1 className="mb-10 bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-center text-3xl sm:text-3xl lg:text-4xl font-bold text-transparent">
         My Fitness
       </h1>
 
