@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Exercise, ExerciseName } from '../types/workoutTypes';
+import { Exercise } from '../types/workoutTypes';
 import { useAtom } from 'jotai';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getEmbeddedYouTubeLink } from '../utils/video';
