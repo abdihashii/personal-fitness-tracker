@@ -1,4 +1,4 @@
-type Warmup = {
+export type Warmup = {
   id: number | null;
   name: string;
   sets: number;
@@ -6,7 +6,7 @@ type Warmup = {
   video?: string;
 };
 
-type Exercise = {
+export type Exercise = {
   id: number | null;
   names: {
     name: string;
