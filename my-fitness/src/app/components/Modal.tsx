@@ -1,18 +1,17 @@
-// WarmupModal.tsx
 import React, { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Warmup } from '../types/workoutTypes';
 import { getEmbeddedYouTubeLink } from '../utils/video';
 import { isLoadingAtom } from '../store/statusAtoms';
 import { LoadingSpinner } from './loadingSpinner';
 import { useAtom } from 'jotai';
+import type { ModalContent } from '../types/modalTypes';
 
-type WarmupModalProps = {
-  warmup: Warmup | null;
+type ModalProps = {
+  content: ModalContent | null;
   closeModal: () => void;
 };
 
-export const WarmupModal = ({ warmup, closeModal }: WarmupModalProps) => {
+export const Modal = ({ content, closeModal }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement | null>(null); // This will be attached to the modal div
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom);
 
@@ -26,7 +25,7 @@ export const WarmupModal = ({ warmup, closeModal }: WarmupModalProps) => {
 
   useEffect(() => {
     setIsLoading(true);
-  }, [warmup, setIsLoading]);
+  }, [content, setIsLoading]);
 
   const handleVideoLoad = () => {
     setIsLoading(false);
@@ -51,7 +50,7 @@ export const WarmupModal = ({ warmup, closeModal }: WarmupModalProps) => {
           className="rounded-lg bg-white p-4" // Tailwind CSS classes for modal
         >
           <h2 className="mb-2 text-xl font-bold text-gray-700">
-            {warmup?.name}
+            {content?.name}
           </h2>
           <div className="embed-responsive aspect-ratio-16/9 relative mb-4">
             {isLoading && (
@@ -61,15 +60,19 @@ export const WarmupModal = ({ warmup, closeModal }: WarmupModalProps) => {
             )}
             <iframe
               onLoad={handleVideoLoad}
-              title="Warmup Video"
+              title="Video"
               className="embed-responsive-item"
-              src={getEmbeddedYouTubeLink(warmup?.video || '')}
+              src={getEmbeddedYouTubeLink(content?.video || '')}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
-          <p className="mb-2 text-lg text-gray-700">Sets: {warmup?.sets}</p>
-          <p className="mb-4 text-lg text-gray-700">Reps: {warmup?.reps}</p>
+          {content?.sets && (
+            <p className="mb-2 text-lg text-gray-700">Sets: {content.sets}</p>
+          )}
+          {content?.reps && (
+            <p className="mb-4 text-lg text-gray-700">Reps: {content.reps}</p>
+          )}
           <button
             onClick={closeModal}
             className="mt-4 w-full rounded bg-gray-500 px-6 py-3 text-white transition duration-200 hover:bg-gray-400"
