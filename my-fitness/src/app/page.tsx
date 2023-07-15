@@ -13,7 +13,7 @@ export default function Home() {
         My Fitness
       </h1>
 
-      <div>
+      {/* <div>
         <button
           className="mb-10 rounded bg-gradient-to-r from-blue-500 to-green-500 px-4 py-2 font-bold text-white hover:from-pink-500 hover:to-yellow-500"
           onClick={() => {
@@ -31,7 +31,7 @@ export default function Home() {
         >
           Add Workout
         </button>
-      </div>
+      </div> */}
 
       {/* <pre className="my-10 text-left">
         <code>{JSON.stringify(workouts.length, null, 2)}</code>
